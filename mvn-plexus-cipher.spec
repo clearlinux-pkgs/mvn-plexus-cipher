@@ -4,16 +4,20 @@
 #
 Name     : mvn-plexus-cipher
 Version  : 1.4
-Release  : 2
+Release  : 3
 URL      : https://repo1.maven.org/maven2/org/sonatype/plexus/plexus-cipher/1.4/plexus-cipher-1.4.jar
 Source0  : https://repo1.maven.org/maven2/org/sonatype/plexus/plexus-cipher/1.4/plexus-cipher-1.4.jar
-Source1  : https://repo1.maven.org/maven2/org/sonatype/plexus/plexus-cipher/1.4/plexus-cipher-1.4.pom
-Source2  : https://repo1.maven.org/maven2/org/sonatype/plexus/plexus-cipher/1.7/plexus-cipher-1.7.jar
-Source3  : https://repo1.maven.org/maven2/org/sonatype/plexus/plexus-cipher/1.7/plexus-cipher-1.7.pom
+Source1  : https://repo1.maven.org/maven2/org/sonatype/plexus/plexus-cipher/1.1/plexus-cipher-1.1.jar
+Source2  : https://repo1.maven.org/maven2/org/sonatype/plexus/plexus-cipher/1.1/plexus-cipher-1.1.pom
+Source3  : https://repo1.maven.org/maven2/org/sonatype/plexus/plexus-cipher/1.4/plexus-cipher-1.4.pom
+Source4  : https://repo1.maven.org/maven2/org/sonatype/plexus/plexus-cipher/1.7/plexus-cipher-1.7.jar
+Source5  : https://repo1.maven.org/maven2/org/sonatype/plexus/plexus-cipher/1.7/plexus-cipher-1.7.pom
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : Apache-2.0
 Requires: mvn-plexus-cipher-data = %{version}-%{release}
+BuildRequires : apache-maven
+BuildRequires : buildreq-mvn
 
 %description
 No detailed description available
@@ -27,21 +31,28 @@ data components for the mvn-plexus-cipher package.
 
 
 %prep
+%setup -q -n META-INF
 
 %build
 
 %install
 mkdir -p %{buildroot}/usr/share/java/.m2/repository/org/sonatype/plexus/plexus-cipher/1.4
-cp %{SOURCE0} %{buildroot}/usr/share/java/.m2/repository/org/sonatype/plexus/plexus-cipher/1.4
+cp %{SOURCE0} %{buildroot}/usr/share/java/.m2/repository/org/sonatype/plexus/plexus-cipher/1.4/plexus-cipher-1.4.jar
+
+mkdir -p %{buildroot}/usr/share/java/.m2/repository/org/sonatype/plexus/plexus-cipher/1.1
+cp %{SOURCE1} %{buildroot}/usr/share/java/.m2/repository/org/sonatype/plexus/plexus-cipher/1.1/plexus-cipher-1.1.jar
+
+mkdir -p %{buildroot}/usr/share/java/.m2/repository/org/sonatype/plexus/plexus-cipher/1.1
+cp %{SOURCE2} %{buildroot}/usr/share/java/.m2/repository/org/sonatype/plexus/plexus-cipher/1.1/plexus-cipher-1.1.pom
 
 mkdir -p %{buildroot}/usr/share/java/.m2/repository/org/sonatype/plexus/plexus-cipher/1.4
-cp %{SOURCE1} %{buildroot}/usr/share/java/.m2/repository/org/sonatype/plexus/plexus-cipher/1.4
+cp %{SOURCE3} %{buildroot}/usr/share/java/.m2/repository/org/sonatype/plexus/plexus-cipher/1.4/plexus-cipher-1.4.pom
 
 mkdir -p %{buildroot}/usr/share/java/.m2/repository/org/sonatype/plexus/plexus-cipher/1.7
-cp %{SOURCE2} %{buildroot}/usr/share/java/.m2/repository/org/sonatype/plexus/plexus-cipher/1.7
+cp %{SOURCE4} %{buildroot}/usr/share/java/.m2/repository/org/sonatype/plexus/plexus-cipher/1.7/plexus-cipher-1.7.jar
 
 mkdir -p %{buildroot}/usr/share/java/.m2/repository/org/sonatype/plexus/plexus-cipher/1.7
-cp %{SOURCE3} %{buildroot}/usr/share/java/.m2/repository/org/sonatype/plexus/plexus-cipher/1.7
+cp %{SOURCE5} %{buildroot}/usr/share/java/.m2/repository/org/sonatype/plexus/plexus-cipher/1.7/plexus-cipher-1.7.pom
 
 
 %files
@@ -49,6 +60,8 @@ cp %{SOURCE3} %{buildroot}/usr/share/java/.m2/repository/org/sonatype/plexus/ple
 
 %files data
 %defattr(-,root,root,-)
+/usr/share/java/.m2/repository/org/sonatype/plexus/plexus-cipher/1.1/plexus-cipher-1.1.jar
+/usr/share/java/.m2/repository/org/sonatype/plexus/plexus-cipher/1.1/plexus-cipher-1.1.pom
 /usr/share/java/.m2/repository/org/sonatype/plexus/plexus-cipher/1.4/plexus-cipher-1.4.jar
 /usr/share/java/.m2/repository/org/sonatype/plexus/plexus-cipher/1.4/plexus-cipher-1.4.pom
 /usr/share/java/.m2/repository/org/sonatype/plexus/plexus-cipher/1.7/plexus-cipher-1.7.jar
